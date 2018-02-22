@@ -10,7 +10,7 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 //draw the shape you want 
-var geometry = new THREE.BoxGeometry(600, 600, 600, 15, 15, 15);
+var geometry = new THREE.BoxGeometry(600, 600, 600, 40, 5, 15);
 //color the cube
 var material = new THREE.MeshBasicMaterial({color: 0x6593f5, wireframe: true});
 var cube = new THREE.Mesh(geometry, material);
@@ -26,6 +26,17 @@ render();
 document.onkeypress = move;
 
 
+
+// function to render the scene and rotate it in place 
+function render() {
+   requestAnimationFrame(render);
+
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+    cube.rotation.z += 0.01;
+
+   renderer.render(scene, camera);
+}
 
 
 // function to move the cube whereever you want 
@@ -53,14 +64,6 @@ function move(e){
 }
 }
 
-// function to render the scene and rotate it in place 
-function render() {
-   requestAnimationFrame(render);
 
-    cube.rotation.x += 0.01;
-	cube.rotation.y += 0.01;
-
-   renderer.render(scene, camera);
-}
 
 
